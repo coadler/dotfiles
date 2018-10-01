@@ -25,11 +25,9 @@ if dein#load_state('~/.vim/dein')
 
   " autocompletion and snippets
   call dein#add('Shougo/deoplete.nvim')
-  call dein#add('fszymanski/deoplete-emoji')
-  call deoplete#custom#source('emoji', 'filetypes', ['golang'])
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
-  
+
   " search
   call dein#add('Shougo/denite.nvim')
   call dein#add('mileszs/ack.vim')
