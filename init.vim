@@ -4,15 +4,15 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/home/colin/.vim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/home/colin/.vim/dein')
-  call dein#begin('/home/colin/.vim/dein')
+if dein#load_state('~/.vim/dein')
+  call dein#begin('~/.vim/dein')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/home/colin/.vim/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('~/.vim/dein/repos/github.com/Shougo/dein.vim')
 
   " lines
   call dein#add('itchyny/lightline.vim')
