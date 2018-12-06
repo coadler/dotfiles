@@ -35,7 +35,7 @@ if dein#load_state('~/.vim/dein')
 
   " colours (jump to SECT:COLOURS for configuration)
   "call dein#add('nightsense/night-and-day') " night and day configuration
-  call dein#add('dracula/vim')
+  " call dein#add('dracula/vim')
   "call dein#add('nightsense/vimspectr')
   "call dein#add('nightsense/snow')
   call dein#add('morhetz/gruvbox')
@@ -75,7 +75,7 @@ if dein#load_state('~/.vim/dein')
 
     " go language support
     let go_ft_opt = { 'on_ft': 'go' }
-    call dein#add('zchee/deoplete-go', go_ft_opt)
+    call dein#add('zchee/deoplete-go', {'on_ft': 'go', 'build': 'make'})
     call dein#add('fatih/vim-go', go_ft_opt)
     call dein#add('jodosha/vim-godebug', go_ft_opt)
 
@@ -241,10 +241,11 @@ let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
-let g:ale_linters = {
-\   'typescript': ['tsserver'],
-\}
-let g:ale_typescript_tsserver_use_global = 0
+" let g:ale_linters = {
+" \   'go': ['golangserver'],
+" \}
+let g:ale_go_langserver_executable = '$GOPATH/bin/go-langserver'
+" let g:ale_typescript_tsserver_use_global = 0
 
 " delimitMate
 let g:delimitMate_expand_cr = 1
@@ -374,7 +375,12 @@ augroup deoplete_lazy_enable
  autocmd InsertEnter * call s:deoplete_lazy_enable()
        \ | silent! doautocmd <nomodeline> deoplete InsertEnter
 augroup END
+
 let g:deoplete#enable_smart_case = 1
+
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+let g:deoplete#sources#go#builtin_objects = 1
 
 nmap <silent> <leader>e :Explore<CR>
 nmap <silent> <leader>b :Denite buffer<CR>
@@ -408,3 +414,6 @@ augroup END
 
 " Explore
 " nmap <silent> <leader> :Explore<CR>
+
+" Terminal
+tnoremap <Esc> <C-\><C-n>
