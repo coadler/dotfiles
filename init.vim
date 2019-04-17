@@ -66,6 +66,7 @@ if dein#load_state('~/.vim/dein')
   call dein#add('tpope/vim-speeddating')           " edit dates easily
   call dein#add('justinmk/vim-sneak')              " jump to any location specified by two characters
   call dein#add('wellle/targets.vim', { 'on_event': 'InsertEnter' }) " more text objects
+  " call dein#add('zxqfl/tabnine-vim')
 
   " language support----------------------
     " elixir language support
@@ -77,7 +78,8 @@ if dein#load_state('~/.vim/dein')
     let go_ft_opt = { 'on_ft': 'go' }
     call dein#add('zchee/deoplete-go', {'on_ft': 'go', 'build': 'make'})
     call dein#add('fatih/vim-go', go_ft_opt)
-    call dein#add('jodosha/vim-godebug', go_ft_opt)
+    call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+    " call dein#add('jodosha/vim-godebug', go_ft_opt)
 
     let g:go_highlight_build_constraints = 1
     let g:go_highlight_extra_types = 1
@@ -89,6 +91,7 @@ if dein#load_state('~/.vim/dein')
     let g:go_highlight_types = 1
     let g:go_auto_sameids = 0
     let g:go_fmt_command = "goimports"
+    " let g:go_def_mode = "gopls"
     let g:go_auto_type_info = 1
     let g:go_build_tags = "integration"
     let g:go_guru_tags = "integration"
@@ -99,12 +102,17 @@ if dein#load_state('~/.vim/dein')
 
     " markdown language support
     call dein#add('euclio/vim-markdown-composer', { 'on_ft': 'markdown', 'build': 'cargo build --release' })
+    call dein#add('plasticboy/vim-markdown', { 'on_ft': 'markdown' })
 
     " python language support
     let python_ft_opt = { 'on_ft': 'python' }
     call dein#add('hdima/python-syntax')
     call dein#add('zchee/deoplete-jedi', python_ft_opt)
 
+    " typescript language support
+    call dein#add('HerringtonDarkholme/yats.vim')
+    call dein#add('Quramy/tsuquyomi', { 'on_ft': 'ts' })
+    let g:deoplete#enable_at_startup = 1
     " ruby language support
     " let ruby_ft_opt = { 'on_ft': 'ruby' }
     " call dein#add('vim-ruby/vim-ruby', ruby_ft_opt) 
@@ -116,15 +124,17 @@ if dein#load_state('~/.vim/dein')
 
     " tex (LaTeX) language support
     " call dein#add('lervag/vimtex', { 'on_ft': 'tex' })
+
+    " Graphviz (dot) language support
+    call dein#add('wannesm/wmgraphviz.vim', { 'on_ft': 'dot' })
+
+    " TOML support
+    call dein#add('cespare/vim-toml', { 'on_ft': 'toml' })
+
   " end language support------------------
 
   " linters
   call dein#add('w0rp/ale')
-
-  " orgmode
-  let org_ft_opt = { 'on_ft': 'org' }
-  call dein#add('jceb/vim-orgmode', org_ft_opt)
-  call dein#add('vim-scripts/utl.vim', org_ft_opt)
 
   " Required:
   call dein#end()
@@ -319,6 +329,7 @@ nmap gp 2] ji
 nmap nt :NERDTree<CR>
 nmap gec :GoDecls<CR>
 nmap gre :GoRename<CR>
+nmap gb :GoDocBrowser<CR>
 
 " bind paste mode
 set pastetoggle =<leader>pp
@@ -415,5 +426,13 @@ augroup END
 " Explore
 " nmap <silent> <leader> :Explore<CR>
 
+" Wrapping
+" set formatoptions-=t
+
 " Terminal
 tnoremap <Esc> <C-\><C-n>
+
+" augroup ReadTheFuckingManual
+"   autocmd!
+"   autocmd TermOpen * setlocal nonumber norelativenumber formatoptions-=t
+" augroup END
