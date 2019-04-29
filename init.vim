@@ -428,6 +428,7 @@ augroup END
 
 " Wrapping
 " set formatoptions-=t
+set wrap!
 
 " Terminal
 tnoremap <Esc> <C-\><C-n>
