@@ -20,6 +20,7 @@ if dein#load_state('~/.vim/dein')
 
   " git support
   call dein#add('tpope/vim-fugitive')     " integration with some git commands
+  call dein#add('tpope/vim-rhubarb')     " integration with some git commands
   call dein#add('airblade/vim-gitgutter') " git diff signs in the gutter
   call dein#add('junegunn/gv.vim')        " git commit browser
 
@@ -30,6 +31,7 @@ if dein#load_state('~/.vim/dein')
 
   " search
   call dein#add('Shougo/denite.nvim')
+  call dein#add('Shougo/neomru.vim')
   call dein#add('mileszs/ack.vim')
   call dein#add('ctrlpvim/ctrlp.vim')
 
@@ -76,12 +78,15 @@ if dein#load_state('~/.vim/dein')
 
     " go language support
     let go_ft_opt = { 'on_ft': 'go' }
+    " call dein#add('zchee/deoplete-go', {'on_ft': 'go', 'build': 'make'})
     call dein#add('zchee/deoplete-go', {'on_ft': 'go', 'build': 'make'})
     call dein#add('fatih/vim-go', go_ft_opt)
     call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
     " call dein#add('jodosha/vim-godebug', go_ft_opt)
 
     let g:go_highlight_build_constraints = 1
+    let g:go_highlight_function_arguments = 1
+    let g:go_highlight_function_parameters = 1
     let g:go_highlight_extra_types = 1
     let g:go_highlight_fields = 1
     let g:go_highlight_functions = 1
@@ -91,7 +96,7 @@ if dein#load_state('~/.vim/dein')
     let g:go_highlight_types = 1
     let g:go_auto_sameids = 0
     let g:go_fmt_command = "goimports"
-    " let g:go_def_mode = "gopls"
+    let g:go_def_mode = "gopls"
     let g:go_auto_type_info = 1
     let g:go_build_tags = "integration"
     let g:go_guru_tags = "integration"
@@ -261,7 +266,9 @@ let g:ale_go_langserver_executable = '$GOPATH/bin/go-langserver'
 let g:delimitMate_expand_cr = 1
 
 " rust racer
-let g:deoplete#sources#rust#racer_binary = "$HOME/.cargo/bin/racer"
+let g:deoplete#sources#rust#racer_binary = "/home/colin/.cargo/bin/racer"
+let g:deoplete#sources#rust#rust_source_path = "/home/colin/rust/rust/src"
+let g:rustfmt_autosave = 1
 
 
 " denite----------------------------------
