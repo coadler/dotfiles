@@ -78,8 +78,6 @@ if dein#load_state('~/.vim/dein')
 
     " go language support
     let go_ft_opt = { 'on_ft': 'go' }
-    " call dein#add('zchee/deoplete-go', {'on_ft': 'go', 'build': 'make'})
-    call dein#add('zchee/deoplete-go', {'on_ft': 'go', 'build': 'make'})
     call dein#add('fatih/vim-go', go_ft_opt)
     call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
     " call dein#add('jodosha/vim-godebug', go_ft_opt)
@@ -259,7 +257,7 @@ let g:ale_lint_on_save = 1
 " let g:ale_linters = {
 " \   'go': ['golangserver'],
 " \}
-let g:ale_go_langserver_executable = '$GOPATH/bin/go-langserver'
+let g:ale_go_langserver_executable = '$GOPATH/bin/gopls'
 " let g:ale_typescript_tsserver_use_global = 0
 
 " delimitMate
