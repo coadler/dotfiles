@@ -105,7 +105,6 @@ if dein#load_state('~/.vim/dein')
 
     " markdown language support
     call dein#add('euclio/vim-markdown-composer', { 'on_ft': 'markdown', 'build': 'cargo build --release' })
-    call dein#add('plasticboy/vim-markdown', { 'on_ft': 'markdown' })
 
     " python language support
     let python_ft_opt = { 'on_ft': 'python' }
@@ -114,7 +113,7 @@ if dein#load_state('~/.vim/dein')
 
     " typescript language support
     call dein#add('HerringtonDarkholme/yats.vim')
-    call dein#add('Quramy/tsuquyomi', { 'on_ft': 'ts' })
+    call dein#add('Quramy/tsuquyomi', { 'on_ft': ['ts', 'tsx'] })
     let g:deoplete#enable_at_startup = 1
     " ruby language support
     " let ruby_ft_opt = { 'on_ft': 'ruby' }
@@ -159,6 +158,10 @@ syntax enable
 let mapleader = " "
 noremap <Space> <NOP>
 
+set autoread
+au FocusGained * :checktime
+
+set inccommand=nosplit
 set hidden
 set wildmenu
 set showcmd
@@ -254,9 +257,9 @@ let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
-" let g:ale_linters = {
-" \   'go': ['golangserver'],
-" \}
+let g:ale_linters = {
+\   'go': ['gopls'],
+\}
 let g:ale_go_langserver_executable = '$GOPATH/bin/gopls'
 " let g:ale_typescript_tsserver_use_global = 0
 
@@ -280,6 +283,13 @@ nnoremap <silent> [denite]d :<C-u>Denite dein<CR>
 nnoremap <silent> [denite]c :<C-u>Denite command<CR>
 nnoremap <silent> [denite]l :<C-u>Denite file_rec<CR>
 nnoremap <silent> [denite]h :<C-u>Denite help<CR>
+
+" indenting
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 " replace grep with ag (silver searcher)
 call denite#custom#var('grep', 'command', ['ag'])
@@ -332,6 +342,7 @@ cnoremap <C-l> <Right>
 nmap gp 2] ji
 
 nmap nt :NERDTree<CR>
+nmap nop :NERDTreeFind<CR>
 nmap gec :GoDecls<CR>
 nmap gre :GoRename<CR>
 nmap gb :GoDocBrowser<CR>
@@ -376,6 +387,8 @@ endfunction
 imap <expr><CR> <SID>neosnippet_expand_or_cr()
 "inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<CR>"
 imap <expr><TAB> <SID>neosnippet_complete()
+
+let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 " neosnippet expand-----------------------
 
 

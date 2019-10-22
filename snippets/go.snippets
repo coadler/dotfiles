@@ -1,0 +1,4 @@
+snippet iew "wrap error"
+        if err != nil {
+                return ${2} xerrors.Errorf("failed to ${1}: %w", err) 
+        }
