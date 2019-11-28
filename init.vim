@@ -270,6 +270,7 @@ let g:delimitMate_expand_cr = 1
 let g:deoplete#sources#rust#racer_binary = "/home/colin/.cargo/bin/racer"
 let g:deoplete#sources#rust#rust_source_path = "/home/colin/rust/rust/src"
 let g:rustfmt_autosave = 1
+let g:rustfmt_options = "--edition 2018"
 
 
 " denite----------------------------------
