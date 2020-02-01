@@ -69,6 +69,26 @@ if dein#load_state('~/.vim/dein')
   call dein#add('justinmk/vim-sneak')              " jump to any location specified by two characters
   call dein#add('wellle/targets.vim', { 'on_event': 'InsertEnter' }) " more text objects
   " call dein#add('zxqfl/tabnine-vim')
+  " call dein#add('neoclide/coc.nvim', {'rev': 'release'})
+  " call dein#add('autozimu/LanguageClient-neovim', { 'build': 'bash install.sh' })
+  call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+  call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+
+  " let g:LanguageClient_serverCommands = {
+  " \ 'rust': ['ra_lsp_server'],
+  " \ }
+
+  " let g:LanguageClient_serverCommands = {
+  "     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+  "     \ }
+  " let g:LanguageClient_devel = 1 " Use rust debug build
+
+  " nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+  "
+  " nmap <silent> gd <Plug>(coc-definition)
+  " nmap <silent> gy <Plug>(coc-type-definition)
+  " nmap <silent> gi <Plug>(coc-implementation)
+  " nmap <silent> gr <Plug>(coc-references)
 
   " language support----------------------
     " elixir language support
@@ -104,7 +124,13 @@ if dein#load_state('~/.vim/dein')
     call dein#add('digitaltoad/vim-pug', { 'on_ft': 'pug' })
 
     " markdown language support
-    call dein#add('euclio/vim-markdown-composer', { 'on_ft': 'markdown', 'build': 'cargo build --release' })
+    " call dein#add('euclio/vim-markdown-composer', { 'on_ft': 'markdown', 'build': 'cargo build --release' })
+    call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
+					\ 'build': 'cd app & yarn install' })
+    let g:mkdp_auto_start = 1
+    let g:mkdp_auto_close = 1
+
+    au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
     " python language support
     let python_ft_opt = { 'on_ft': 'python' }
@@ -122,7 +148,7 @@ if dein#load_state('~/.vim/dein')
     " rust language support
     let rust_ft_opt = { 'on_ft': 'rust' }
     call dein#add('rust-lang/rust.vim', rust_ft_opt)
-    call dein#add('sebastianmarkow/deoplete-rust', rust_ft_opt)
+    " call dein#add('sebastianmarkow/deoplete-rust', rust_ft_opt)
 
     " tex (LaTeX) language support
     " call dein#add('lervag/vimtex', { 'on_ft': 'tex' })
@@ -270,7 +296,6 @@ let g:delimitMate_expand_cr = 1
 let g:deoplete#sources#rust#racer_binary = "/home/colin/.cargo/bin/racer"
 let g:deoplete#sources#rust#rust_source_path = "/home/colin/rust/rust/src"
 let g:rustfmt_autosave = 1
-let g:rustfmt_options = "--edition 2018"
 
 
 " denite----------------------------------
